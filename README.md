@@ -119,7 +119,7 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
 
 ```json
 {
-    "OrderNumber": "1020192", #Numero de orden del proovedor
+    "OrderNumber": "1020192", # Numero de orden del proovedor
     "OrderDate": "2024-08-08T00:00:00",
     "Customer": {
         "CustomerId": "012",
@@ -133,7 +133,7 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
             "Name": "Costa Rica"
         }
     },
-    "CustomerOrderNumber": "PRPRE09" #Nuestro numero de orden
+    "CustomerOrderNumber": "PRPRE09" # Nuestro numero de orden
 }
 ```
 ###  🔵 Fase 3 - Consultar Productos de Pedido Especial
