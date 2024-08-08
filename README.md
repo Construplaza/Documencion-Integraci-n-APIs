@@ -88,17 +88,30 @@ Configurar la conexión a la API, implementar solicitudes GET para obtener los d
 Integrar la funcionalidad para cargar y gestionar pedidos directamente a través de la API proporcionada, permitiendo la automatización del proceso.
 
 **Datos a Enviar:**
-- **Información del Pedido:** Detalles completos del pedido, incluyendo número de pedido, fecha de creación, y cualquier otra información relevante.
+- **Información del Pedido:** Detalles completos del pedido, incluyendo número de orden, fecha de creación, y cualquier otra información relevante.
 
 #### Ejemplo
 
   | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `idOrden`      | `string` | **Required**. |
-| `fechaCreacion`      | `string` | Fecha de creación del pedido, si se necesitara|
+| `idOrden`      | `string` | **Required**. Puede ser uno de los dos este o idFactura |
+| `idFactura`      | `string` | **Required**. Puede ser uno de los dos este o idOrden |
+| `fechaCreacion`      | `string` | Fecha de creación del pedido|
 
 
 - **Detalles del Producto:** Listado de productos incluidos en el pedido, especificando ID y cantidad.
+
+#### Ejemplo de Cuerpo de Solicitud para la API
+```json
+    {
+        "Sku": "ArticuloPrueba1",
+        "Quantity": 2,
+    },
+    {
+         "Sku": "ArticuloPrueba1",
+         "Quantity": 1,
+    }
+```
 - **Instrucciones Especiales:** Cualquier instrucción especial relacionada con la entrega o manejo del pedido (de ser necesario).
 
 **Proceso de Integración:**
@@ -106,6 +119,32 @@ Integrar la funcionalidad para cargar y gestionar pedidos directamente a través
 - **Autenticación y Autorización:** Implementar mecanismos de autenticación y autorización para el API.
 - **Confirmación y Validación:** Validar que el pedido ha sido recibido y procesado correctamente, y recibir número de pedido, número de orden o factura (respuesta de la API).
 - **Manejo de Errores:** Implementar el manejo de errores y excepciones, asegurando que cualquier problema en el envío del pedido sea detectado.
+
+#### Formato de Respuesta en Caso de Error
+```json
+   {
+    "Message": "Stock disponible insuficiente para agregar SKU al pedido.",
+    "ErrorCode": 23,
+   }
+```
+
+#### Catálogo de Errores Comunes de la API
+
+| Error codigo          | Mensaje        | 
+|----------------|-------------|
+| `1`       | No se envio un parametro requerido.       |
+| `23`           | Stock disponible insuficiente para agregar SKU al pedido.      | 
+| `26`         | TSe solicitan demasiados productos. El número máximo de productos permitidos es.     | 
+| `27`  | No se puede agregar un producto a un pedido. Este se encuentra desactivado      |
+| `28` | Producto de pedido no autorizado. Por favor consulta el catálogo de productos autorizados.      | 
+| `29`       | Lista de productos vacía.       |  
+| `30`       | Invalid order.       |  
+| `31`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |  
+| `31`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |
+| `33`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |
+
+
+
 
 **Alcance:**
 Configurar la conexión a la API, implementar solicitudes POST para enviar los datos de los pedidos u órdenes, manejar confirmaciones y errores, y presentar el estado del pedido u orden en nuestro sistema interno.
@@ -119,7 +158,7 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
 
 ```json
 {
-    "OrderNumber": "1020192", # Numero de orden del proovedor
+    "OrderNumber": "1020192", --Numero de orden del proovedor
     "OrderDate": "2024-08-08T00:00:00",
     "Customer": {
         "CustomerId": "012",
@@ -133,7 +172,7 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
             "Name": "Costa Rica"
         }
     },
-    "CustomerOrderNumber": "PRPRE09" # Nuestro numero de orden
+    "CustomerOrderNumber": "PRPRE09" -- Nuestro numero de orden
 }
 ```
 ###  🔵 Fase 3 - Consultar Productos de Pedido Especial
