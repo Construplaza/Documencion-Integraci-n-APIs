@@ -94,7 +94,7 @@ Integrar la funcionalidad para cargar y gestionar pedidos directamente a través
 
   | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `idOrden`      | `string` | **Required**|
+| `idOrden`      | `string` | **Requerido**|
 | `fechaCreacion`      | `string` | Fecha de creación del pedido|
 
 
