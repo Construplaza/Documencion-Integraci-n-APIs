@@ -1,6 +1,6 @@
 # Descripción
 
-Esta es la odcumentacion necesaria para conocer el proyecto de Api´s a desarrollar con los diferentes proveedores
+Esta es la documentación necesaria para conocer el proyecto de Api´s a desarrollar con los diferentes proveedores
 
 # Bitacora de Documentación
 
