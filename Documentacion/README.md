@@ -343,7 +343,3 @@ Esto es una propuesta de trabajo desarrollada por CONSTRUPLAZA S.A
 <img src="construplaza_logo.png" alt="Logo Construplaza" width="200"/>
 
 
-# Bitacora de Documentación
-
-- 2024-08-12 - Andrei Calderón Molina - Creación de la documentación necesaria para el proyecto de Api´s
-
