@@ -33,8 +33,6 @@ Construplaza está buscando establecer una integración API con nuestros proveed
 - Procesar y mostrar estos datos en tiempo real en nuestra página web.
 - Validar la información obtenida antes de formalizar cualquier pedido.
 - Generar órdenes automatizadas por medio de API.
-- Consultar y generar pedidos especiales (productos que no manejamos).
-
 ## Alcance del Proyecto
 
 ### Funcionalidades
@@ -44,13 +42,16 @@ Construplaza está buscando establecer una integración API con nuestros proveed
 - **Procesamiento:** Asegurar que la información se muestre en tiempo real, es decir, cuando se consulte la API, se obtenga la información real sobre el stock.
 - **Envío de Pedidos:** Garantizar una correcta conexión entre el stock validado y el stock del endpoint de la fase 1.
 - **Obtención del Catálogo Completo:** Obtener toda la información adicional de los artículos.
+- **Habilitar espacio de desarrollo :** Garantizar un espacio de desarrollo para realizar todas las pruebas necesarias.
+- **Desplegar a producción :** Después de completar las pruebas en el entorno de desarrollo, proceder al despliegue en producción, asegurando la obtención de todas las credenciales necesarias y que los cambios se implementen de manera segura y sin interrupciones.
+
 
 ## Requisitos del Proyecto
 
 ### Requisitos Funcionales
 
 - Establecer una conexión segura con la API del proveedor.
-- Ejecutar solicitudes GET y POST para obtener o enviar todos los datos necesarios.
+- Ejecutar metodos de HTTP para obtener o enviar todos los datos necesarios.
 
 ### Requisitos No Funcionales
 
@@ -66,14 +67,19 @@ Construplaza está buscando establecer una integración API con nuestros proveed
 Implementar una funcionalidad que permita consultar la API del proveedor en tiempo real para obtener información actualizada sobre la existencia y costos de los productos.
 
 **Datos Requeridos:**
-- Nombre de Artículo
-- Impuestos (en caso de tener)
-- Bodega (en caso de tener)
-- Cantidad (Inventario)
-- Precios
-- Descuentos (en caso de tener)
-- Estado (Activo o Inactivo)
-- Moneda (en caso de ser necesario)
+
+
+  | Parametro | Tipo     | Ejemplo                       |
+| :-------- | :------- | :-------------------------------- |
+| `Sku (Codigo artículo)`      | `string` | `"PRU01"`  |
+| `Impuestos`      | `string` | `"13%"`o `"IVA 13%"` |
+| `Bodega`      | `string` | `"1"` |
+| `Cantidad`      | `string` | `"20", sin cantidad "0"` |
+| `Precio`      | `string` | `"21843.00"` |
+| `Descuentos`      | `string` | `"0%"` |
+| `Inactivo`      | `boolean` | `false` |
+| `Moneda (en caso de ser necesario)`   | `string` | `"USD" o "CRC" ` |
+
 
 **Alcance:**
 Configurar la conexión a la API, implementar solicitudes GET para obtener los datos necesarios, procesar estos datos y presentarlos en la página web de manera precisa y en tiempo real.
@@ -92,7 +98,7 @@ Integrar la funcionalidad para cargar y gestionar pedidos directamente a través
 
 #### Ejemplo
 
-  | Parameter | Type     | Description                       |
+  | Parametro | Tipo     | Descripción                       |
 | :-------- | :------- | :-------------------------------- |
 | `idOrden`      | `string` | **Requerido**|
 | `fechaCreacion`      | `string` | Fecha de creación del pedido|
@@ -141,8 +147,6 @@ Integrar la funcionalidad para cargar y gestionar pedidos directamente a través
 | `31`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |  
 | `31`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |
 | `33`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |
-
-
 
 
 **Alcance:**
