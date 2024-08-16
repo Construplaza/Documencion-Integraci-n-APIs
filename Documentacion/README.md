@@ -45,7 +45,6 @@ Construplaza está buscando establecer una integración API con nuestros proveed
 - **Habilitar espacio de desarrollo :** Garantizar un espacio de desarrollo para realizar todas las pruebas necesarias.
 - **Desplegar a producción :** Después de completar las pruebas en el entorno de desarrollo, proceder al despliegue en producción, asegurando la obtención de todas las credenciales necesarias y que los cambios se implementen de manera segura y sin interrupciones.
 
-
 ## Requisitos del Proyecto
 
 ### Requisitos Funcionales
@@ -59,7 +58,7 @@ Construplaza está buscando establecer una integración API con nuestros proveed
 - Alta disponibilidad y tiempo de respuesta rápido.
 - Escalabilidad para manejar un gran volumen de solicitudes.
 
-## ⚙️ Fases del Proyecto
+## 🔄 Fases del Proyecto
 
 ### 🔵 Fase 1 - Consultar Existencia y Costos
 
@@ -74,10 +73,10 @@ Implementar una funcionalidad que permita consultar la API del proveedor en tiem
 | `Sku (Codigo artículo)`      | `string` | `"PRU01"`  |
 | `Impuestos`      | `string` | `"13%"`o `"IVA 13%"` |
 | `Bodega`      | `string` | `"1"` |
-| `Cantidad`      | `string` | `"20", sin cantidad "0"` |
-| `Precio`      | `string` | `"21843.00"` |
+| `Cantidad`      | `int` | `0,1,20` |
+| `Precio`      | `decimal` | `21843.00` |
 | `Descuentos`      | `string` | `"0%"` |
-| `Inactivo`      | `boolean` | `false` |
+| `Inactivo`      | `boolean` | `false o true` |
 | `Moneda (en caso de ser necesario)`   | `string` | `"USD" o "CRC" ` |
 
 
@@ -184,7 +183,8 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
 Habilitar consultas para productos que no se manejan regularmente en nuestro inventario y que requieren pedidos especiales, obteniendo y almacenando información detallada sobre estos artículos.
 
 **Datos Requeridos:**
-- Nombre de Artículo
+- Sku 
+- Descripción del articulo
 - Descripción del Fabricante
 - Fotos
 - Categorías
@@ -231,8 +231,8 @@ Habilitar este entorno hasta finalizar todas las pruebas respectivas.
         "nombrearticulo": "ARTICULO PRUEBA",
         "impuesto": "IVA 13%",
         "bodega": "4",
-        "cantidad": "10",
-        "price": "3239.00",
+        "cantidad": 10,
+        "price": 3239.00,
         "descuento": "0%",
         "inactivo": false,
         "moneda" : "CRC"
@@ -242,8 +242,8 @@ Habilitar este entorno hasta finalizar todas las pruebas respectivas.
         "nombrearticulo": "ARTICULO PRUEBA 2",
         "impuesto": "IVA 13%",
         "bodega": "2",
-        "cantidad": "10",
-        "price": "5039.00",
+        "cantidad": 10,
+        "price": 5039.00,
         "descuento": "0%",
         "inactivo": false,
         "moneda" : "CRC"
