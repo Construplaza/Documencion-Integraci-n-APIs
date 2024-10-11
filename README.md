@@ -13,7 +13,7 @@
 5. [Fases del Proyecto](#-fases-del-proyecto)
    - [Fase 1 - Consultar Existencia y Costos](#-fase-1---consultar-existencia-y-costos)
    - [Fase 2 - Cargar Pedidos u Órdenes](#-fase-2---cargar-pedidos-u-órdenes)
-     - [Obtener Factura](#-fase-21---obtener-factura)
+     - [Fase 2.1 - Obtener Factura](#21---obtener-factura)
    - [Fase 3 - Consultar Productos de Pedido Especial](#-fase-3---consultar-productos-de-pedido-especial)
 6. [Flujo de Trabajo General para Nuestra Implementación](#flujo-de-trabajo-general-para-nuestra-implementación)
 7. [Ambiente de Pruebas](#-ambiente-de-pruebas)
