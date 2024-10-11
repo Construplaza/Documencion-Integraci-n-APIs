@@ -13,6 +13,7 @@
 5. [Fases del Proyecto](#-fases-del-proyecto)
    - [Fase 1 - Consultar Existencia y Costos](#-fase-1---consultar-existencia-y-costos)
    - [Fase 2 - Cargar Pedidos u Órdenes](#-fase-2---cargar-pedidos-u-órdenes)
+     - [Obtener Factura](#-fase-21---obtener-factura)
    - [Fase 3 - Consultar Productos de Pedido Especial](#-fase-3---consultar-productos-de-pedido-especial)
 6. [Flujo de Trabajo General para Nuestra Implementación](#flujo-de-trabajo-general-para-nuestra-implementación)
 7. [Ambiente de Pruebas](#-ambiente-de-pruebas)
@@ -68,16 +69,16 @@ Implementar una funcionalidad que permita consultar la API del proveedor en tiem
 **Datos Requeridos:**
 
 
-  | Parametro | Tipo     | Ejemplo                       |
-| :-------- | :------- | :-------------------------------- |
-| `Sku (Codigo artículo)`      | `string` | `"PRU01"`  |
-| `Impuestos`      | `string` | `"13%"`o `"IVA 13%"` |
-| `Bodega`      | `string` | `"1"` |
-| `Cantidad`      | `int` | `0,1,20` |
-| `Precio`      | `decimal` | `21843.00` |
-| `Descuentos`      | `string` | `"0%"` |
-| `Inactivo`      | `boolean` | `false o true` |
-| `Moneda (en caso de ser necesario)`   | `string` | `"USD" o "CRC" ` |
+  | Parametro                           | Tipo      | Ejemplo              |
+  | :---------------------------------- | :-------- | :------------------- |
+  | `Sku (Codigo artículo)`             | `string`  | `"PRU01"`            |
+  | `Impuestos`                         | `string`  | `"13%"`o `"IVA 13%"` |
+  | `Bodega`                            | `string`  | `"1"`                |
+  | `Cantidad`                          | `int`     | `0,1,20`             |
+  | `Precio`                            | `decimal` | `21843.00`           |
+  | `Descuentos`                        | `string`  | `"0%"`               |
+  | `Inactivo`                          | `boolean` | `false o true`       |
+  | `Moneda (en caso de ser necesario)` | `string`  | `"USD" o "CRC" `     |
 
 
 **Alcance:**
@@ -97,10 +98,10 @@ Integrar la funcionalidad para cargar y gestionar pedidos directamente a través
 
 #### Ejemplo
 
-  | Parametro | Tipo     | Descripción                       |
-| :-------- | :------- | :-------------------------------- |
-| `idOrden`      | `string` | **Requerido**|
-| `fechaCreacion`      | `string` | Fecha de creación del pedido|
+  | Parametro       | Tipo     | Descripción                  |
+  | :-------------- | :------- | :--------------------------- |
+  | `idOrden`       | `string` | **Requerido**                |
+  | `fechaCreacion` | `string` | Fecha de creación del pedido |
 
 
 - **Detalles del Producto:** Listado de productos incluidos en el pedido, especificando ID y cantidad.
@@ -134,18 +135,18 @@ Integrar la funcionalidad para cargar y gestionar pedidos directamente a través
 
 #### Catálogo de Errores Comunes de la API
 
-| Error codigo          | Mensaje        | 
-|----------------|-------------|
-| `1`       | No se envio un parametro requerido.       |
-| `23`           | Stock disponible insuficiente para agregar SKU al pedido.      | 
-| `26`         | TSe solicitan demasiados productos. El número máximo de productos permitidos es.     | 
-| `27`  | No se puede agregar un producto a un pedido. Este se encuentra desactivado      |
-| `28` | Producto de pedido no autorizado. Por favor consulta el catálogo de productos autorizados.      | 
-| `29`       | Lista de productos vacía.       |  
-| `30`       | Invalid order.       |  
-| `31`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |  
-| `31`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |
-| `33`       | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud.       |
+| Error codigo | Mensaje                                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `1`          | No se envio un parametro requerido.                                                                                        |
+| `23`         | Stock disponible insuficiente para agregar SKU al pedido.                                                                  |
+| `26`         | TSe solicitan demasiados productos. El número máximo de productos permitidos es.                                           |
+| `27`         | No se puede agregar un producto a un pedido. Este se encuentra desactivado                                                 |
+| `28`         | Producto de pedido no autorizado. Por favor consulta el catálogo de productos autorizados.                                 |
+| `29`         | Lista de productos vacía.                                                                                                  |
+| `30`         | Invalid order.                                                                                                             |
+| `31`         | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud. |
+| `31`         | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud. |
+| `33`         | Se ha especificado un pedido no válido. Asegúrese de que el pedido tenga el formato correcto en el cuerpo de la solicitud. |
 
 
 **Alcance:**
@@ -160,7 +161,7 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
 
 ```json
 {
-    "OrderNumber": "1020192", -- Numero de orden del proovedor
+    "OrderNumber": "1020192", -- Numero de orden del proveedor
     "OrderDate": "2024-08-08T00:00:00",
     "Customer": {
         "CustomerId": "012",
@@ -177,6 +178,51 @@ Configurar la conexión a la API, implementar solicitudes POST para enviar los d
     "CustomerOrderNumber": "PRPRE09" -- Nuestro numero de orden
 }
 ```
+
+#### 2.1 - Obtener Factura
+
+Es importante destacar que la facturación no es un proceso inmediato. Por lo tanto, necesitamos un endpoint disponible para consultar la factura cuando esté lista. A continuación, se presenta un ejemplo de un endpoint, pero estamos abiertos a adaptarnos según sea necesario. Es fundamental obtener las líneas de la factura para poder comparar los detalles de nuestra orden de compra con los de la factura.
+
+#### Parámetros
+
+| Parámetro        | Tipo     | Descripción                                                |
+| :--------------- | :------- | :--------------------------------------------------------- |
+| `Pedido u Orden` | `string` | **Requerido**. Identificador del pedido u orden de compra. |
+
+#### Ejemplo de respuesta de la API con factura disponible
+```json
+{
+    "facturapedido": "00100001010000088888",
+    "existe": true,
+    "articulos": [
+        {
+            "articulo": "PRUEBA01",
+            "cantidad": 48.00000000,
+            "precio_unitario": 5550.00000000
+        },
+        {
+            "articulo": "PRUEBA02",
+            "cantidad": 24.00000000,
+            "precio_unitario": 6250.00000000
+        }
+    ]
+}
+```
+
+#### Ejemplo de respueta de la API sin factura
+```json
+{
+    "facturapedido": "No exite factura",
+    "existe": false,
+    "articulos": []
+}
+```
+
+
+
+
+
+
 ###  🔵 Fase 3 - Consultar Productos de Pedido Especial
 
 **Descripción:**
@@ -352,3 +398,6 @@ Esto es una propuesta de trabajo desarrollada por CONSTRUPLAZA S.A
 - 2024-08-12 - Andrei Calderón Molina - Creación de la documentación necesaria para el proyecto de Api´s
 
 - 2024-08-16 - Andrei Calderón Molina - Revisión y ajuste de documentación
+  
+- 2024-10-11 - Andrei Calderón Molina - Agregación del endpoint necesario para la consulta de facturación
+
