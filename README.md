@@ -267,6 +267,10 @@ Implementar medidas de seguridad y configuración de accesos adecuados.
 
 Habilitar este entorno hasta finalizar todas las pruebas respectivas.
 
+#### Seguridad IP
+
+Ademas de nuestra parte todas las invocaciones solo se haran de parte de dos IP publicas, la cual para mantener una seguridad más adecuada, seria bueno generar una lista blanca con estas, pero solo se manejara en en ambiente de produccion.
+
 ## 💡 Ejemplos de Integraciones formato API - Fase 1
 
 ### Información en un mismo Endpoints
@@ -401,3 +405,4 @@ Esto es una propuesta de trabajo desarrollada por CONSTRUPLAZA S.A
   
 - 2024-10-11 - Andrei Calderón Molina - Agregación del endpoint necesario para la consulta de facturación
 
+- 2024-11-05 - Andrei Calderón Molina - Agregación de ajuste de seguridad, lista blanca de ip
