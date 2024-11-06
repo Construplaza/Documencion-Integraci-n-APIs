@@ -267,6 +267,44 @@ Implementar medidas de seguridad y configuración de accesos adecuados.
 
 Habilitar este entorno hasta finalizar todas las pruebas respectivas.
 
+## Seguridad IP 
+
+Para asegurar un acceso seguro y controlado entre ambos desarrollos, recomendamos implementar una lista blanca de IPs, limitando las invocaciones a las direcciones IP específicas que proveemos. Esta medida permitirá a su equipo restringir el acceso únicamente a fuentes confiables, mejorando la protección general del sistema.
+
+### Beneficios de la lista blanca de IPs
+- Mayor Control de Seguridad: Limitar el acceso a direcciones IP específicas reduce el riesgo de accesos no autorizados.
+
+- Cumplimiento de Normativas: La lista blanca contribuye a cumplir con estándares de seguridad y privacidad al restringir conexiones únicamente a IPs aprobadas.
+
+- Prevención de Accesos Involuntarios: Al configurar la lista blanca en cada ambiente, su equipo puede asegurarse de que solo nuestras IPs autorizadas puedan realizar invocaciones en sus sistemas.
+
+### Procedimiento recomendado para implementar la lista blanca
+- Agregar Nuestras IPs Autorizadas: Recomendamos añadir nuestras IPs a una lista blanca en sus ambientes de desarrollo y producción.
+
+- Configurar Monitoreo: Configuren alertas para detectar cualquier intento de acceso desde IPs no autorizadas.
+
+- Proceso de Actualización de IPs: Si en el futuro es necesario cambiar alguna IP, les notificaremos oportunamente para que actualicen la lista.
+
+
+### Lista Blanca de IPs
+
+#### Producción
+
+| IP |
+| :-------- |
+| `34.200.99.163`      |
+| `3.225.20.67`      | 
+
+
+#### Desarrollo
+
+| IP  |
+| :-------- |
+| `44.213.198.105`      |
+
+
+
+
 ## 💡 Ejemplos de Integraciones formato API - Fase 1
 
 ### Información en un mismo Endpoints
@@ -401,3 +439,4 @@ Esto es una propuesta de trabajo desarrollada por CONSTRUPLAZA S.A
   
 - 2024-10-11 - Andrei Calderón Molina - Agregación del endpoint necesario para la consulta de facturación
 
+- 2024-11-05 - Andrei Calderón Molina - Agregación de ajuste de seguridad, lista blanca de ip
